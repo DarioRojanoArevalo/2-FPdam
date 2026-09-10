@@ -12,13 +12,13 @@ fun main() {
         println("i = $i")
     }*/
     helloKotling();
-    varTypes();
+   // varTypes();
 }
 
 fun helloKotling() {
     println("Hello from KOTLING, thas ist like java but shorter?")
     print("the compilator translate to java machine and syso has chnaged by print but ln ist the same")
-}
+}/*
 fun varTypes(){
     val a: Int=2;
     print(a);
@@ -33,4 +33,4 @@ fun varTypes(){
     val i2: String = b2.toString();
 
     val i3: Double = b2.toDouble();
-}
+}*/
