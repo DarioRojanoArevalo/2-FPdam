@@ -1,0 +1,64 @@
+Variables{
+    SegúnFlexibilidad{
+        var
+        val
+    }
+    SegunInformación{
+        String
+        Byte
+        Int
+        Long
+        Double
+        Boolean
+        IntRange
+
+        ListOf()
+        arrayOf
+        IntArrayOf
+        StringArrayOf
+        ...
+        mutableListOf()
+
+        Int?
+    }
+}
+Operators{
+    ?
+    ?:
+    !!
+
+
+    =
+    +=
+    -=
+
+    +
+    -
+    *
+    /
+
+    ==
+    !=
+    <
+    >
+    <=
+    >=
+    in
+
+    &&
+    ||
+
+    if(){}
+    else if(){}
+    else{}
+
+    when(){
+        -> {}
+    }
+
+    when{
+        () -> {}
+    }
+
+}
+

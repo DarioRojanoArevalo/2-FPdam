@@ -1,0 +1,55 @@
+Variables{
+    SegúnFlexibilidad{
+        var
+        val
+    }
+    SegunInformación{
+        String
+        Byte
+        Int
+        Long
+        Double
+        Boolean
+        IntRange
+    }
+}
+Operators{
+    ?
+    ?:
+    !!
+
+
+    =
+    +=
+    -=
+
+    +
+    -
+    *
+    /
+
+    ==
+    !=
+    <
+    >
+    <=
+    >=
+    in
+
+    &&
+    ||
+
+    if(){}
+    else if(){}
+    else{}
+
+    when(){
+        -> {}
+    }
+
+    when{
+        () -> {}
+    }
+
+}
+
