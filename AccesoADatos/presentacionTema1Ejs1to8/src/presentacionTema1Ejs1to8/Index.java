@@ -3,6 +3,8 @@ package presentacionTema1Ejs1to8;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.System.*;
+
 public class Index {
 /*
 1. Crea un directorio llamado ”ejercicios”
@@ -16,26 +18,28 @@ public class Index {
 • ¿Has podido? YES!YES!YES!YES!
 */
 	public static void main(String[] args) {
-		System.out.println("Hello World");// TODO Auto-generated method stub
-		if(ej1("ejercicios")) System.out.println("creado el directorio");
-		if(ej2_4("ejercicios", "ejercicio1"))System.out.println("creada el fichero");
+		if(ej1("ejercicios")) out.println("creado el directorio");
+		if(ej2_4("ejercicios", "ejercicio1")) out.println("creada el fichero");
 		ej3();
-		if(ej2_4("ejercicios", "ejercicio2"))System.out.println("creada el fichero");
-
+		if(ej2_4("ejercicios", "ejercicio2")) out.println("creada el fichero");
+		ej5_7("ejercicios");
+		ej6_8("ejercicios","ejercicio1");
+		ej5_7("ejercicios");
+		ej6_8("ejercicios","ejercicio1");
 	}
 	public static boolean ej1(String directorio){
 		File carpeta = new File(directorio);
         try {
-            System.out.println("Se intentará crear un directorio en la ruta: "+carpeta.getCanonicalPath());
+            out.println("Se intentará crear un directorio en la ruta: "+carpeta.getCanonicalPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         if(carpeta.exists()){
 			if(carpeta.isDirectory()) {
-			System.out.println("Ya existía el directorio");
+			out.println("Ya existía el directorio");
 			return false;
 			}
-			System.out.println("Ya existe un archivo de nombre "+directorio);
+			out.println("Ya existe un archivo de nombre "+directorio);
 			return false;
 		}
 		return carpeta.mkdir();
@@ -50,18 +54,28 @@ public class Index {
     }
 	public static void ej3(){
 		File fichero = new File("ejercicios"+ File.separator+"ejercicio1");
-		System.out.println(fichero.length());
-	}
-	public static void ej5(String directorio){
-		File carpeta = new File(directorio);
-		String [] in = carpeta.list();
         try {
-            System.out.println("Los directorios dentro de "+carpeta.getCanonicalPath()+" son:");
+            out.println("Tamaño del fichero de la ruta "+fichero.getCanonicalPath()+":"+fichero.length());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        for (int i = 0; i < in.length; i++) {
-			System.out.println(in[i]);
-		}
+    }
+	public static void ej5_7(String directorio){
+		File carpeta = new File(directorio);
+		if(carpeta.isDirectory()){
+			String [] in = carpeta.list();
+			try {
+				out.println("Los directorios dentro de "+carpeta.getCanonicalPath()+" son:");
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			for (int i = 0; i < in.length; i++) {
+				out.println(in[i]);
+			}
+		}else out.println("No se ha podido mostrar la información de los directorios porque la ruta no corresponde a una carpeta");
+	}
+	private static void ej6_8(String ejercicios, String ejercicio1) {
+		File fichero = new File(ejercicios+File.separator+ejercicio1);
+		if(fichero.exists()&&fichero.isFile()) out.println("Borrado el fichero? :"+fichero.delete());
 	}
 }
