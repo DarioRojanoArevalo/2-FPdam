@@ -3,7 +3,7 @@ import java.io.*;
 public class VerInf {
 public static void main(String[] args) {
   System.out.println("INFORMACIÓN SOBRE EL FICHERO:");
-  File f = new File("D:\\ADAT\\UNI1\\VerInf.java");  
+  File f = new File("fichero temporal.txt");
   if(f.exists()){
     System.out.println("Nombre del fichero  : "+f.getName());
     System.out.println("Ruta                : "+f.getPath());
@@ -14,6 +14,12 @@ public static void main(String[] args) {
     System.out.println("Es un directorio    : "+f.isDirectory()); 
     System.out.println("Es un fichero       : "+f.isFile());
     System.out.println("Nombre del directorio padre: "+f.getParent());
+  }else {
+      try {
+          f.createNewFile();
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
   }
  }
 }

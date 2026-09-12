@@ -11,7 +11,6 @@ public class EscribirPersonasNIO {
        
         // Define la ruta del archivo
         Path ruta = Path.of("FichPersonas.dat");
-        
         ObjectOutputStream dataOS;
         if(Files.exists(ruta)) {
         	dataOS = new MiObjectOutputStream(Files.newOutputStream(ruta,StandardOpenOption.APPEND));
