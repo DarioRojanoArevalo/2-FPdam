@@ -1,0 +1,3 @@
+Los proyecto Gradle de Java fallan en el portátil respondiendo:
+	Error: Could not find or load main class org.example.Main
+	Caused by: java.lang.ClassNotFoundException: org.example.Main
