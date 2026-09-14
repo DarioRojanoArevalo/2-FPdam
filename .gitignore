@@ -1,2 +1,22 @@
-.idea/
+# Eclipse
 .metadata/
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Java compilación
+out/
+bin/
+target/
+
+# Gradle
+.gradle/
+**/build/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
