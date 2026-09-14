@@ -1,25 +1,94 @@
+{
 Variables{
     SegúnFlexibilidad{
-        var
-        val
+        var:{
+            Descripcion: "variable cuyo valor puedes cambiar"
+        }
+        val:{
+            Descripcion:"Constante de valor inmutable"
+        }
     }
     SegunInformación{
-        String
-        Byte
-        Int
-        Long
-        Double
-        Boolean
-        IntRange
-
-        ListOf()
-        arrayOf
-        IntArrayOf
-        StringArrayOf
+        String:{
+            Descripcion:"Guarda cadenas de texto cuyo valor se  escribe entre comillas"
+            Declaracion:"val varName: String = """
+        }
+        Byte:{
+            Descripcion:"Números enteros que caben en 8 bits de -128 a 127 "
+            Declaracion:"val varName: Byte = 0"
+            },
+        Int:{
+            Descripcion:"Números enteros que caben en 8 bytes (32bits) es decir [2^31,(2^31)-1]"
+            Declaracion:"val varName: Int = 0"
+        },
+        Long:{
+            Descripcion:"Números enteros que caben en 16 bytes(64 bits) es decir [2^63,(2^63)-1"
+            Declaracion:"val varName: Long = 0"
+        },
+        Float:{
+            Descripción:"Números decimales de entre 0 y 6/6 dígitos (32 bits)"
+            Declaración:"val varName: Double= 0.0"
+        },
+        Double:{
+            Descripción:"Números decimales de entre 0 y 15/17 dígitos (64 bits)"
+            Declaración:"val varName: Double= 0.0"
+        },
+        Boolean:{
+            Descripcion:"Variable verdadero falso (1 0) true false"
+            Declaracion:"val varName: Boolean = true"
+        },
+        IntRange:{
+            Descripcion:"Rango cerrado de valores numéricos Int"
+            Declaracion:["val varName: IntRange=(1..9)","val varName: IntRange=(1 until 9)"]
+        },
+        IntProgresion:{
+            Descripcion:"Progresión numérica de valores Int"
+            Declaracion:"val varName: IntProgresion=(9 downTo 1)","val varName: IntProgresion=(1..9 step 2)"
+        },
+        LongRange:{
+            Descripcion:"Rango cerrado de valores numéricos Long"
+            Declaracion:["val varName: LongRange=(1..9)","val varName: LongRange=(1 until 9)"]
+        },
+        LongProgresion:{
+            Descripcion:"Progresión numérica de valores Long"
+            Declaracion:"val varName: LongProgresion=(999 downTo 10000000000)","val varName: LongProgresion=(1999999..90000000000 step 300)"
+        },
+        CharRange:{
+            Descripcion:"Rango cerrado de valores Char"
+            Declaracion:["val varName: CharRange=('a'..'z')","val varName: CharRange=('a' until 'z')"]
+        },
+        CharProgresion:{
+            Descripcion:"Progresión de valores Char"
+            Declaracion:["val varName: CharProgresion=('z' downTo 'a')","val varName: CharProgresion=('a'..'z' step 3)"]
+        },
+        ClosedRange:{
+            Descripcion:"Rango de tipoabierto"
+            Declaracion:["val varName: ClosedRange<String> = ("Anton ".."Zacarias")","val vari: ClosedRange<Date> = (Date(2000,1,1)..Date(2020, 1,1))"]
+        },
+        OpenEndRange:{
+            Descripcion:"Rango de tipo abierto y cuyo elemento final se excluye."
+            Declaracion:"val vari: OpenEndRange<String> = "Anton" ..< "Zacarias""
+        },
+        listOf():{
+            Descripcion:""
+            Declaracion:""
+        },
+        arrayOf:{
+            Descripcion:""
+            Declaracion:""
+        },
+        IntArrayOf:{
+            Descripcion:""
+            Declaracion:""        },
+        StringArrayOf:{
+            Descripcion:""
+            Declaracion:""
+        },
         ...
-        mutableListOf()
-
-        Int?
+        mutableListOf():{
+            Descripcion:""
+            Declaracion:""
+        }
     }
 }
 Operators{
@@ -59,6 +128,6 @@ Operators{
     when{
         () -> {}
     }
-
+}
 }
 

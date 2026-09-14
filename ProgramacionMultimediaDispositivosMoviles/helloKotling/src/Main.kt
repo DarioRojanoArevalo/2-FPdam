@@ -1,8 +1,16 @@
+import java.io.File
+import java.util.Date
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
     helloKotling();
     varTypes();
+    //Los rangos y progresiones me parecen una shit mu gorda
+    /*val rango: IntRange = (1 .. 2)
+    val progresion: IntProgression=(9 downTo 1 step 2)
+    val varName: CharProgression = ('a'..'z' step 3)
+    val vari: OpenEndRange<String> = "Anton" ..< "Zacarias";*/
 }
 
 fun helloKotling() {
@@ -13,7 +21,7 @@ fun varTypes(){
     val a: Int=2;
     println("Int (2): "+a);
     val b = a.toByte(); println("Int(2) toByte: "+b);
-    val b2: Byte = 1 // OK, literals are checked statically
+    val b2: Byte = 0 // OK, literals are checked statically
     println("Byte (1): "+b2)
 
     val i1: Int = b2.toInt(); println("Byte (1) to int: "+i1)
@@ -74,4 +82,40 @@ fun varTypes(){
     fishFoodTreats = fishFoodTreats!!.dec()
     println(fishFoodTreats)
     println("El códio se detiene si el valor es nulo y en caso de que no quieras poner el ? no te deja ya que el valor es nullable")
+    println("")
+    println("")
+
+    val listaFija: List<Any> = listOf(1,2,3,4,5,"seis","siete",true, false, File(""),true);
+    val listaFijaints: List<Int> = listOf(1,2,3,4,5);
+    println(listaFija)
+    println(listaFija[6])
+    println("Tamño de la lista fija "+listaFija.size)
+    println("")
+
+    val listaCambiante: Array<Any> = arrayOf(1, 2, 3, 4, 5 , true, false)
+    val listaCambianteints: Array<Int> = arrayOf(1, 2, 3, 4, 5 /*, "seis"*/)
+    //las listas se pueden imprimir directamente, los arrays no
+    println(listaCambianteints)
+    //al poner una any hay que catear esto también era así en java, interesante
+    listaCambiante[4]=listaCambiante[4].toString()+"Cambiado"
+    println(listaCambianteints[4])
+    println("Tamaño de la lista cambiante ${listaCambiante.size} ")
+    println("")
+
+    val listaDinamica: MutableList<Any> = mutableListOf(1, 2, 3, 4, "seis")
+    val listaDinamicaints: MutableList<Int> = mutableListOf(1,2,3,4);
+    println(listaDinamica)
+    listaDinamica[4] =listaDinamica[4].toString() + "cambiado"
+    println(listaDinamica[4])
+    println("Tamaño original lista dinamica ${listaDinamica.size}")
+    listaDinamica.add("one more element")
+    println("Tamaño actualizado lista dinamica ${listaDinamica.size}")
+    println("")
+    //MI conclusión el array se ha vuelto lo más inutil y lo mejor ahora son los mutable List
+
+
+}
+fun bucles(){
+
+
 }
