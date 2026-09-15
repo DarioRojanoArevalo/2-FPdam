@@ -10,7 +10,7 @@ public class LeerPersonas2 {
         File fichero = new File("FichPersonas2.dat");
 
         try (ObjectInputStream dataIS =
-                     new ObjectInputStream(new FileInputStream(fichero))) {
+new ObjectInputStream(new FileInputStream(fichero))) {
 
             // Leemos el único objeto que hay en el fichero
             ArrayList<Persona> listaPersonas =(ArrayList<Persona>) dataIS.readObject();
