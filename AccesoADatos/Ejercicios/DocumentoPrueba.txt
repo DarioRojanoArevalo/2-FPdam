@@ -1,0 +1,3 @@
+Has ejecutado un programa de lectura de fichero.
+Pero no se ha encontrado la ruta especificada.
+Cerrando programa.
