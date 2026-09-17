@@ -1,11 +1,11 @@
-package presentacionTema1Ejs1to8;
+package org.example;
 
 import java.io.File;
 import java.io.IOException;
 
 import static java.lang.System.*;
 
-public class Main {
+public class presentacionTema1Ejs1to8 {
 /*
 1. Crea un directorio llamado ”ejercicios”
 2. Crea un fichero llamado ejercicio1, dentro del directorio ejercicios
@@ -17,7 +17,7 @@ public class Main {
 8. Elimina nuevamente el fichero llamado fichero1.
 • ¿Has podido? YES!YES!YES!YES!
 */
-	public static void main(String[] args) {
+	private static void main(String[] args) {
 		if(ej1("ejercicios")) out.println("creado el directorio");
 		if(ej2_4("ejercicios", "ejercicio1")) out.println("creada el fichero");
 		ej3();
