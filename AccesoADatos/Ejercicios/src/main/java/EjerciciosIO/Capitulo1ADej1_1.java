@@ -44,14 +44,3 @@ public static void listarcarpetasRecursivo(String directorio, String identacion)
         System.out.println(identacion.substring(0, identacion.length() - 1));
     }
 }
-/*
-* |--|>
-*    |--
-*
-* */
-
-
-
-
-
-

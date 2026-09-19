@@ -1,9 +1,9 @@
-package org.example;
+package EjerciciosIO;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class Main {
+public class ObjectsStream {
     static void main() throws IOException, ClassNotFoundException {
         ArrayList<Producto> productos= new ArrayList<Producto>();
         productos.add(new Producto(1,9.2,"Sartén"));
@@ -44,10 +44,10 @@ public class Main {
             System.out.println("Falló el equals");
             System.out.println("");
             System.out.println("Original");
-            mostrarArray(productos);
+            mostrarArrayProducto(productos);
             System.out.println("");
             System.out.println("Leido");
-            mostrarArray(productos2);
+            mostrarArrayProducto(productos2);
         }
     }
     public static void guardarProductos(ArrayList<Producto> productos) throws IOException{
@@ -62,17 +62,21 @@ public class Main {
         }
 
     }
-    public static ArrayList<Producto> recuperarProductos() throws IOException {
+    public static ArrayList<Producto> recuperarProductos() {
         ArrayList<Producto> a = new ArrayList<Producto>();
+        try{
         ObjectInputStream objectInStream = new ObjectInputStream (new FileInputStream(new File("Productos.dat")));
 
-        try{
+
             while (true) {
                 a.add((Producto) objectInStream.readObject());
             }
-        }catch (EOFException e){
-
+        }catch (EOFException i){
         } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return a;

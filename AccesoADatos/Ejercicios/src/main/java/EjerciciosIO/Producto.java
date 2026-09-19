@@ -1,4 +1,4 @@
-package org.example;
+package EjerciciosIO;
 
 import java.io.Serializable;
 

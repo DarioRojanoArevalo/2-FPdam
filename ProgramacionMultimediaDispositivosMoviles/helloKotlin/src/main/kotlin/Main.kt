@@ -4,11 +4,15 @@ import java.util.Date
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    helloKotling();
+    //helloKotling();
     //varTypes();
     //condicionales();
-    bucles();
-
+    //bucles();
+    funcionesYClases();
+    /*val real: String?  = if(true){
+        println("cosas")
+        "oye"
+    }else null*/
 
     //Los rangos y progresiones me parecen una shit mu gorda
     /*val rango: IntRange = (1 .. 2)
@@ -80,7 +84,7 @@ fun varTypes(){
 
     }
     var fishFoodTreats: Int? =null;
-    println(fishFoodTreats);
+    println(fishFoodTreats.toString());
     fishFoodTreats = fishFoodTreats?.dec() ?: 0
     println(fishFoodTreats)
     fishFoodTreats = fishFoodTreats!!.dec()
@@ -125,7 +129,7 @@ fun bucles(){
     var gg = mutableListOf("1","2","3","4","5","6","7","8","9");
     var bb = (2..10 step 2);
     println("");
-    println("El for para recorrer un aray se hace con el nombre de la variable que será el valor del array e in.array EJ: for(i in nums) ")
+    println("El for para recorrer un aray se hace con el nombre de la variable que será el valor del array e in.array EJ: for(i in nums)")
     for(i in nums){
         print(i)
     }
@@ -196,4 +200,25 @@ fun condicionales(){
         (true||false)->{println("Del mismo modo podemos encadenar opciones usando ||"); println("")}
     }
 
+}
+fun funcionesYClases(){
+    var prov1 = Proveedor("C.hola", null)
+    println(prov1.toString())
+}
+
+data class Producto(val nombre: String?, var precio: Double?, var stock : Int? , val proveedores: MutableList<Proveedor>?){
+    fun stostring(): String {
+        return "Nombre: $nombre precio: $precio stock: $stock \n"
+    }
+    fun mostrarNProveedores (){
+        println(proveedores)
+    }
+    fun menosstock(){
+        stock?.minus(1) ?:0
+    }
+}
+class Proveedor(var direccion: String?,val productos: MutableList<Producto>?){
+    override fun toString(): String {
+        return "Proveedor(direccion=$direccion, productos=${productos ?: "Sin productos"})"
+    }
 }

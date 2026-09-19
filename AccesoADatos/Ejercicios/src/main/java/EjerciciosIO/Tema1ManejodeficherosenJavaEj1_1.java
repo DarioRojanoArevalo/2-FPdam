@@ -8,11 +8,9 @@ import static java.lang.IO.println;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Tema1ManejodeficherosenJavaEj1_1 {
-    static void main(String [] a) throws IOException {
-        String ruta= null;
-        if(a.length==1){
-            ruta =a[0];
-        }
+    static void main(String [] argumentos) throws IOException {
+        String ruta=null;
+        if(argumentos.length>0) ruta = argumentos[0];
         if(ruta == null||ruta.equals("")){
             ruta="DocumentoPrueba.txt";
         }

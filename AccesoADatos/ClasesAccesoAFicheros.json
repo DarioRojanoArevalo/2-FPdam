@@ -1,9 +1,224 @@
-{
-  "IO": {
-
-  },
+{"IO": {
+  "":"",
+  "Clases": [{
+    "ejemplo":{
+      "descripcion": "",
+      "declaracion": [""],
+      "variables": {
+              "estaticas": [{}],
+              "de Objeto": []
+      },
+      "metodos":[{}]
+    },
+    "File": {
+        "descripcion": "Se encarga de gestionar las rutas de directorios y ficheros. NO equivale a un archivo real pero puede utilizarse para verificar si en dicha ruta hay algo, que es y que permisos tiene entre otras cosas.",
+        "declaracion": ["File varName = new File(\"ruta a directorio\");"],
+        "variables": {
+              "estaticas": [{
+                "separator": "se trata de un string que contiene el valor del separador de rutas en el systema operativo utilizado. \\\\ en windows y / en linux"
+              }],
+              "de Objeto": []
+        },
+        "metodos": [{
+                ".list()": {
+                  "Recibe": "Empty",
+                  "devuelve": "String[]",
+                  "descripcion": "Devuelve un array con los nombres de ficheros y directorios que hay en la ruta"
+                },
+                ".listFiles": {
+                  "Recibe": "Empty",
+                  "devuelve": "File[]",
+                  "descripcion": "Devuelve un array con los objetos File de ficheros y directorios que hay en la ruta"
+                },
+                ".getName": {
+                  "Recibe": "Empty",
+                  "devuelve": "String",
+                  "descripcion": "Devuelve el nombre del fichero o directorio al que apunte la ruta"
+                },
+                ".getAbsolutePath":{
+                  "Recibe": "Empty",
+                  "devuelve": "String",
+                  "descripcion": "Encuentra la ruta absoluta desde el directorio Raiz completa incluyendo saltos hacia adelante y atrás"
+                },
+                ".getCanoniclaPath": {
+                "Recibe": "Empty",
+                "devuelve": "String",
+                "descripcion": "Aya la ruta absoluta limpia sin saltos intermedios"
+                },
+                ".exist": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Devuelve true solo si la ruta realmente existe en el sitema y false si se corta en algún momento"
+                },
+                "canWrite": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Devuelve true solo si la ruta apunta a un fichero con permisos de lectura"
+                },
+                "canRead": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Devuelve true solo si la ruta apunta a un fichero con permisos de escritura"
+                },
+                "isFile": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Devuelve true solo si la ruta apunta a un fichero"
+                },
+                "isDirectory": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Devuelve true solo si la ruta apunta a un directorio"
+                },
+                "length":{
+                  "Recibe": "Empty",
+                  "devuelve": "long",
+                  "descripcion": "Devuelve el número de bytes que ocupa el fichero"
+                },
+                "mkdir": {
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Intenta crear el directorio al que apunta la ruta, si lo consigue devuelve true"
+                },
+                "renameTo": {
+                  "Recibe": "File",
+                  "devuelve": "boolean",
+                  "descripcion": "Intenta cambiar la ruta a la que apunta el directorio por la que le des, si lo consigue devuelve true"
+                },
+                "delete":{
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Intenta borrar el directorio al que apunta la ruta, si lo consigue devuelve true"
+                },
+                "createNewFile":{
+                  "Recibe": "Empty",
+                  "devuelve": "boolean",
+                  "descripcion": "Intenta crear el fichero al que apunta la ruta, si lo consigue devuelve true"
+                },
+                "getParent": {
+                  "Recibe": "Empty",
+                  "devuelve": "String",
+                  "descripcion": "Devuelve el nombre del directorio padre, null en caso de no existir"
+                }
+        }]
+    },
+    "FileWriter":{
+      "descripcion": "Se usa para escribir texto al final de un Fichero",
+      "declaracion": ["FileWriter varName = new FileWriter(new File(\"rutaFichero\"))"],
+      "variables": {
+              "estaticas": [{}],
+              "de Objeto": []
+      },
+      "metodos":[{}]
+    },
+    "FileReader":{
+      "descripcion": "Se utiliza para leer ficheros que contienen datos en formato texto",
+      "declaracion": ["FileReader varName = new FileReader(new File(\"rutaFichero\"))"],
+      "variables": {
+              "estaticas": [{}],
+              "de Objeto": []
+      },
+      "metodos":[{}]
+    },
+    "FileOutputStream":{
+        "descripcion": "Se encarga de dirigir el flujo de Bytes desde el programa en ejcución hasta un fichero.",
+        "declaracion": [
+        "FileInputStream varName = new FileImputStram(new File(\"ruta a directorio\"))"
+        ],
+        "variables": {
+        "estaticas": [],
+        "de Objeto": []
+        },
+        "metodos": [{}]
+    },
+    "FileInputStream":{
+      "descripcion": "Se encarga de dirigir el flujo de Bytes desde un fichero hasta el programa en ejcución",
+      "declaracion": [
+      "FileInputStream varName = new FileImputStram(new File(\"ruta a directorio\"))"
+      ],
+      "variables": {
+      "estaticas": [],
+      "de Objeto": []
+      },
+      "metodos": [{
+        ".read()":{
+          "Recibe": "Empty",
+          "devuelve": "Byte",
+          "descripcion": "Devuelve el valor del próximo Byte que se encuentre en el fichero o -1 si no queda contenido por leer"
+        }
+      }]
+    },
+    "DataOutputStream":{
+        "descripcion": "Se encarga de convertir las variables nativas de java en flujos de Bytes y dirigirlos a un fichero",
+        "declaracion": ["DataOutputStream varName = new DataOutputStream(new FileOutputStream(new File(\"rutaFichero\")));"],
+        "variables": {
+              "estaticas": [{}],
+              "de Objeto": []
+        },
+        "metodos":[{}]
+    },
+    "DataInputStream":{
+        "descripcion": "Se encarga de recibir el flujo de bytes de un fichero y transformarlo en variables nativas de java (int, double, boolean, String ...)",
+        "declaracion": ["DataInputStream varName = new DataInputStream(new FileInputStream(new File(\"rutaFichero\")));"],
+        "variables": {
+              "estaticas": [{}],
+              "de Objeto": []
+        },
+        "metodos":[{}]
+    },
+    "ObjectOutputStream":{
+          "descripcion": "Se encarga de dirigir el flujo de Bytes desde un fichero hasta el programa en ejcución",
+          "declaracion": [
+          "FileInputStream varName = new FileImputStram(new File(\"ruta a directorio\"))"
+          ],
+          "variables": {
+          "estaticas": [],
+          "de Objeto": []
+          },
+          "metodos": [{}]
+    },
+    "ObjectInputStream":{
+      "metodos": [{
+        ".readObject()":{
+          "Recibe": "Empty",
+          "devuelve": "Object",
+          "descripcion": "Devuelve el objeto Java previametne guardado, este debe ser casteado a la clase correspondiente y hara saltar la excepción EOFException cuando intentes leer y no haya más objetos"
+        }
+      }]
+    }
+  }]},
   "NIO": {
-
+    "":"",
+    "Clases": [{
+      "ejemplo":{
+        "descripcion": "",
+        "declaracion": [""],
+        "variables": {
+                "estaticas": [{}],
+                "de Objeto": []
+        },
+        "metodos":[{}]
+      },
+      "Path":{
+        "descripcion": "Se encarga de gestionar las rutas de directorios y ficheros. NO equivale a un archivo real pero puede utilizarse para verificar si en dicha ruta hay algo, que es y que permisos tiene entre otras cosas.",
+        "declaracion": ["Path varName = Paths.get(\"ruta\");"],
+        "variables": {
+                "estaticas": [{}],
+                "de Objeto": []
+        },
+        "metodos":[{
+          ".getFileName": {
+            "Recibe": "Empty",
+            "devuelve": "String",
+            "descripcion": "Devuelve el nombre del directorio o fichero final al que apunta"
+                },
+          ".toAbsolutePath()":{
+            "Recibe": "Empty",
+            "devuelve": "String",
+            "descripcion": "Devuelve la ruta Absoluta de la direcceión"
+          }
+        }]
+      }
+    }]
   }
-
 }
