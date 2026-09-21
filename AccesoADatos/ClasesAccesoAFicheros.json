@@ -218,7 +218,8 @@
             "descripcion": "Devuelve la ruta Absoluta de la direcceión"
           }
         }]
-      }
+      },
+      "RamdomAccessFile": {}
     }]
   }
 }

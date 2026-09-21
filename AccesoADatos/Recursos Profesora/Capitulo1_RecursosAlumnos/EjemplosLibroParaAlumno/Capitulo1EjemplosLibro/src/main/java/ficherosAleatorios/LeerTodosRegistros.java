@@ -22,7 +22,8 @@ public class LeerTodosRegistros {
 			id = file.readInt(); // obtengo id de empleado
 
 			// recorro uno a uno los caracteres del apellido
-			char apellido[] = new char[10], aux;
+			char apellido[] = new char[10];
+			char aux;
 			for (int i = 0; i < apellido.length; i++) {
 				aux = file.readChar();
 				apellido[i] = aux; // los voy guardando en el array
