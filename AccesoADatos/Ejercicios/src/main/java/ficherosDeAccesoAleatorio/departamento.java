@@ -43,6 +43,7 @@ public class departamento {
         int numRegistro = numDepartToNumRegistro(i);
         if(numRegistro==-1){
             println("No se ha encontrado el departamento "+i);
+            return;
         }
         try {
             ficheroR.seek(registroToBytes(numRegistro));
@@ -69,17 +70,41 @@ public class departamento {
 
     public static boolean registrarNuevoDepartamento(Short numDepartamento, Short numEmpleados, String nombre, String localidad){
         try {
+            nombre= String.format("%-" + 15 + "s", nombre);
+            localidad= String.format("%-" + 15 + "s", localidad);
+            println("Colocamos puntero en "+fichero.length());
             ficheroR.seek(fichero.length());
-
+            println("Tamño del fichero es "+ fichero.length());
+            println("Escribimos");
             ficheroR.writeShort(numDepartamento);
+
+            println("*"+numDepartamento+"*");
+            println("Tamño del fichero es "+ fichero.length());
             ficheroR.writeShort(numEmpleados);
+            println("*"+numEmpleados+"*");
+            println("Tamño del fichero es "+ fichero.length());
             ficheroR.writeUTF(nombre);
+            println("*"+nombre+"*" +nombre.length());
+            println("Tamño del fichero es "+ fichero.length());
             ficheroR.writeUTF(localidad);
+            println("*"+localidad+"*" +localidad.length());println("Tamño del fichero es "+ fichero.length());
+            println();
+            println("El puntero finaliza en " + ficheroR.getFilePointer()+" y el tamño del fichero es "+ fichero.length());
+            println();println();println();
             return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public static void cerrarTodo() {
+        try {
+            ficheroR.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean registrarThisNuevoDepartamento(){
         try {
             ficheroR.seek(fichero.length());
@@ -102,7 +127,11 @@ public class departamento {
         for (int i =0;i<fichero.length();i+=bytesRegistro){
             try {
                 ficheroR.seek(i);
-                if(NumDepart==ficheroR.readShort())return (int) ficheroR.getFilePointer()/bytesRegistro;
+                int numeroFich =ficheroR.readShort();
+                if(NumDepart==numeroFich){
+                    int filePointer=(int)ficheroR.getFilePointer();
+                    return (filePointer/bytesRegistro)+1;
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

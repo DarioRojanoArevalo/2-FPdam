@@ -30,10 +30,13 @@ public class Tema1ManejodeficherosenJavaEj_1_5 {
                 throw new RuntimeException(e);
             }
         }
+        //Los metodos de registro están mal casi seguro porque al leer el shor del puntero 64 devuelve un numero 13423 mientras debería estar escrito 2
         departamento d = new departamento();
-        departamento.registrarNuevoDepartamento((short) 1,(short) 23,"Recursos Humanos","Seseña");
+        departamento.registrarNuevoDepartamento((short) 1,(short) 23,"RecursosHumanos","Seseña");
         departamento.registrarNuevoDepartamento((short) 2,(short) 325,"Transportes","Madrid");
         departamento.registrarNuevoDepartamento((short) 4,(short) 54,"Publicidad","Barcelona");
         departamento.imprimirDepartamentoNDepart(4);
+        departamento.cerrarTodo();
+        departamento.fichero.delete();
     }
 }
