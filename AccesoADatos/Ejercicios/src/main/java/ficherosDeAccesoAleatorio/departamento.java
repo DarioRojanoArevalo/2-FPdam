@@ -26,34 +26,136 @@ Probar todos los métodos y comprobar el correcto funcionamiento. Controlar las 
 public class departamento {
     public static File fichero = new File("AleatorioDepart.dat");
     public static RandomAccessFile ficheroR;
-    private static int bytesRegistro=(2*2)+((2*15)*2);
+    //los strings ocupan 17 porque usamos readUTF y writeUTF
+    public static int bytesRegistro=(2*2)+((2*17));
 
 
-    Short numDepartamento, numEmpleados;
-    String nombre, localidad;//15 caracteres
-
-    public departamento(Short numDepartamento, Short numEmpleados, String nombre, String localidad) throws FileNotFoundException {
+    public Short numDepartamento, numEmpleados;
+    public String nombre, localidad;//15 caracteres
+    public departamento() throws FileNotFoundException {this.ficheroR =new RandomAccessFile(fichero.getName(),"rw");}
+    /*CONSTRUCTOR*/public departamento(Short numDepartamento, Short numEmpleados, String nombre, String localidad) throws FileNotFoundException {
         this.localidad=localidad.substring(0,15);
         this.nombre = nombre.substring(0,15);
         this.numEmpleados=numEmpleados;
         this.ficheroR =new RandomAccessFile(fichero.getName(),"rw");
     }
-    public departamento() throws FileNotFoundException {this.ficheroR =new RandomAccessFile(fichero.getName(),"rw");}
-    public static void imprimirDepartamentoNDepart(int i){
-        int numRegistro = numDepartToNumRegistro(i);
-        if(numRegistro==-1){
-            println("No se ha encontrado el departamento "+i);
-            return;
-        }
+    /*Crear el fichero de departamentos de nombre AleatorioDepart.dat. Los campos de cada registro son: número de departamento(short), nombre (15
+        caracteres) localidad (15 caracteres) y número de empleados (short). Los datos para llenar el fichero se toman de arrays que tendrás que crear. La posición
+        de cada registro dependerá del número de departamento.
+        Después realiza los siguientes metodos:
+        CHECKk Metodo que reciba un número de departamento y devuelva true o false indicando si existe o no el registro.
+        CHECK! Metodo que reciba un número de departamento y muestre los datos. Si no existe mostrar mensaje indicándolo.
+        CHECK!Metodo que actualice el campo número de empleados, debe guardar el número de empleados del fichero AleatorioEmple.dat en ese departamento.
+        CHECK! Metodo que reciba un número de departamento, un nombre y una localidad y modifique el nombre y la localidad de ese número de departamento. Si
+        no existe mostrar mensaje indicándolo.
+        CHECK! Metodo que reciba un número de departamento, un nombre y una localidad y lo inserte en el fichero, siempre y cuando no exista el número de
+        departamento.
+        • Metodo que reciba un número de departamento y lo elimine del fichero. El borrado consistirá en almacenar -1 en los campos numéricos y * en las
+        cadenas.
+        • Metodo que muestre todos los datos de todos los departamentos.
+    Puedes realizar los métodos en una clase o varias.
+    Probar todos los métodos y comprobar el correcto funcionamiento. Controlar las posibles situaciones de error que puedan ocurrir.*/
+
+
+    public static void deleteRegistro(int numDepartamento){
         try {
-            ficheroR.seek(registroToBytes(numRegistro));
-            println("Registro num "+i);
-            println("Cod departamento "+ficheroR.readShort() );
-            println("Nombre de departamento "+ficheroR.readUTF());
-            println("Ubicación "+ficheroR.readUTF());
+            int num = numDepartToNumRegistro(numDepartamento);
+            if(num==-1){
+                println("No se ha encontrado el departamento "+numDepartamento);
+                println();println();println();
+                return;
+            }
+            num = numRegistroToBytes(num);
+            ficheroR.seek(num);
+            ficheroR.writeShort(-1);
+            ficheroR.writeShort(-1);
+            ficheroR.writeUTF("***************".substring(0,15));
+            ficheroR.writeUTF("***************".substring(0,15));
+            println();
+            return;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static void setnumEmpleadosFromNDepart(int numDepart,int numeEmple){
+        int numRegistro = numDepartToNumRegistro(numDepart);
+        if(numRegistro==-1){
+            println("No se ha encontrado el departamento "+numDepart);
+            println();println();println();
+            return;
+        }
+        try {
+            int punteroNumEmple= numRegistroToBytes(numRegistro);
+            ficheroR.seek(punteroNumEmple);
+            println("Numero empleados Original "+ficheroR.readShort());
+            ficheroR.seek(punteroNumEmple);
+            ficheroR.writeShort(numeEmple);
+            ficheroR.seek(punteroNumEmple);
+            println("Numero empleados Actualizado "+ficheroR.readShort());
+            println();println();println();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void setDepart(Short numDepartamento, Short numEmpleados, String nombre, String localidad){
+        try {
+            int num = numDepartToNumRegistro(numDepartamento);
+            if(num==-1){
+                println("No se ha encontrado el departamento "+numDepartamento);
+                println();println();println();
+                return;
+            }
+            num = numRegistroToBytes(num);
+            nombre= String.format("%-" + 15 + "s", nombre);
+            localidad= String.format("%-" + 15 + "s", localidad);
+            imprimirDepartamenFromByte(num);
+            ficheroR.seek(num);
+            ficheroR.writeShort(numDepartamento);
+            ficheroR.writeShort(numEmpleados);
+            ficheroR.writeUTF(nombre.substring(0,15));
+            ficheroR.writeUTF(localidad.substring(0,15));
+            println();
+            imprimirDepartamenFromByte(num);
+            return;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void imprimirDepartamenFromNDepart(int i){
+        int numRegistro = numDepartToNumRegistro(i);
+        if(numRegistro==-1){
+            println("No se ha encontrado el departamento "+i);
+            println();println();println();
+            return;
+        }
+        try {
+            ficheroR.seek(numRegistroToBytes(numRegistro));
+            println("Registro num "+bytePositionToNumRegistro());
+            println("Cod departamento "+ficheroR.readShort() );
+            println("Numero empleados "+ficheroR.readShort());
+            println("Nombre de departamento "+ ficheroR.readUTF());
+            println("Ubicación "+ficheroR.readUTF());
+            println();println();println();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void imprimirDepartamenFromByte(int i){
+        try {
+            ficheroR.seek(i);
+            println("Registro num "+bytePositionToNumRegistro());
+            println("Cod departamento "+ficheroR.readShort() );
+            println("Numero empleados "+ficheroR.readShort());
+            println("Nombre de departamento "+ ficheroR.readUTF());
+            println("Ubicación "+ficheroR.readUTF());
+            println();println();println();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void imprimirDepartamenFromNRegistro(int i){
+        //TODO
     }
 
     public static Boolean exist(short numDepartamento){
@@ -68,44 +170,38 @@ public class departamento {
         return false;
     }
 
-    public static boolean registrarNuevoDepartamento(Short numDepartamento, Short numEmpleados, String nombre, String localidad){
-        try {
-            nombre= String.format("%-" + 15 + "s", nombre);
-            localidad= String.format("%-" + 15 + "s", localidad);
-            println("Colocamos puntero en "+fichero.length());
-            ficheroR.seek(fichero.length());
-            println("Tamño del fichero es "+ fichero.length());
-            println("Escribimos");
-            ficheroR.writeShort(numDepartamento);
-
-            println("*"+numDepartamento+"*");
-            println("Tamño del fichero es "+ fichero.length());
-            ficheroR.writeShort(numEmpleados);
-            println("*"+numEmpleados+"*");
-            println("Tamño del fichero es "+ fichero.length());
-            ficheroR.writeUTF(nombre);
-            println("*"+nombre+"*" +nombre.length());
-            println("Tamño del fichero es "+ fichero.length());
-            ficheroR.writeUTF(localidad);
-            println("*"+localidad+"*" +localidad.length());println("Tamño del fichero es "+ fichero.length());
-            println();
-            println("El puntero finaliza en " + ficheroR.getFilePointer()+" y el tamño del fichero es "+ fichero.length());
-            println();println();println();
-            return true;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public static boolean registrarNuevoDepartamento(Short numDepartamento, Short numEmpleados, String nombre, String localidad) {
+        if (exist(numDepartamento)) {
+            try {
+                nombre = String.format("%-" + 15 + "s", nombre);
+                localidad = String.format("%-" + 15 + "s", localidad);
+                ficheroR.seek(fichero.length());
+                println("Tamño del fichero es " + fichero.length());
+                println("Escribimos");
+                ficheroR.writeShort(numDepartamento);
+                println("*" + numDepartamento + "*");
+                println("Tamño del fichero es " + fichero.length());
+                ficheroR.writeShort(numEmpleados);
+                println("*" + numEmpleados + "* ");
+                println("Tamño del fichero es " + fichero.length());
+                ficheroR.writeUTF(nombre.substring(0, 15));
+                println("*" + nombre + "*" + nombre.length());
+                println("Tamño del fichero es " + fichero.length());
+                ficheroR.writeUTF(localidad.substring(0, 15));
+                println("*" + localidad + "*" + localidad.length());
+                println();
+                println("El puntero finaliza en " + ficheroR.getFilePointer() + " y el tamño del fichero es " + fichero.length());
+                println();
+                println();
+                println();
+                return true;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        return false;
     }
-
-    public static void cerrarTodo() {
-        try {
-            ficheroR.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean registrarThisNuevoDepartamento(){
+   /* public boolean registrarThisNuevoDepartamento(){
         try {
             ficheroR.seek(fichero.length());
 
@@ -117,12 +213,20 @@ public class departamento {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }*/
+
+    public static void cerrarTodo() {
+        try {
+            ficheroR.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static int registroToBytes(int numRegistro){
+
+    private static int numRegistroToBytes(int numRegistro){
         return (bytesRegistro* (numRegistro-1));
     }
-
     public static int numDepartToNumRegistro (int NumDepart){
         for (int i =0;i<fichero.length();i+=bytesRegistro){
             try {
@@ -138,5 +242,11 @@ public class departamento {
         }
         return -1;
     }
-
+    public static int bytePositionToNumRegistro(){
+        try {
+            return (int)ficheroR.getFilePointer()/bytesRegistro;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
