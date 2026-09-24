@@ -1,6 +1,9 @@
 package com.first.myapplicationcontador1
 
 //import android.R
+//Importamos el proyecto porque la interfáz está declarada dentro de este proyecto (No visible desde la vista android)
+import android.app.Activity
+import com.first.myapplicationcontador1.R
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -25,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity
         }*/
     }
 }*/
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     private var textoContador: TextView? = null
     private var btnContador: Button? = null
     private var contador: Int =0;
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         
         // Una vez cargado el layout, ya podemos acceder a sus elementos
         textoContador = findViewById(R.id.TextDisplayContador)
-        btnContador = findViewById(R.id.ButtomSumarContador)
+        btnContador = findViewById(R.id.ButtonSumarContador)
         btnContador?.setOnClickListener { incrementarContador() }
     }
     fun incrementarContador(){
