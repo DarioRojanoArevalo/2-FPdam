@@ -3,13 +3,10 @@ package com.first.myapplicationcontador1
 //import android.R
 //Importamos el proyecto porque la interfáz está declarada dentro de este proyecto (No visible desde la vista android)
 import android.app.Activity
-import com.first.myapplicationcontador1.R
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 
 
 /*class MainActivity : ComponentActivity() {
@@ -31,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : Activity() {
     private var textoContador: TextView? = null
     private var btnContador: Button? = null
+    private var btnShowList: Button? =null;
     private var contador: Int =0;
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +40,17 @@ class MainActivity : Activity() {
         textoContador = findViewById(R.id.TextDisplayContador)
         btnContador = findViewById(R.id.ButtonSumarContador)
         btnContador?.setOnClickListener { incrementarContador() }
+        btnShowList= findViewById(R.id.ChangeToActList)
+        btnShowList?.setOnClickListener { changeActivityToList() }
     }
     fun incrementarContador(){
         contador++
-        textoContador!!.setText("Clicks: $contador");
+        textoContador!!.setText("$contador");
+    }
+
+    fun changeActivityToList(){
+        val intent = Intent(this, ListadoActividades::class.java)
+        startActivity(intent)
     }
    /*  private void incrementarContador(View v) {
         // Actualizamos el valor del contador

@@ -7,17 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/TextDisplayContador"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        
-    />
+        android:layout_height="0dp"
+        android:layout_marginBottom="180dp"
+        android:fontFamily="monospace"
+        android:text="ZERO"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonSumarContador"
+        app:layout_constraintEnd_toEndOf="@+id/ButtonSumarContador"
+        app:layout_constraintStart_toStartOf="@+id/ButtonSumarContador" />
 
     <Button
         android:id="@+id/ButtonSumarContador"
@@ -28,10 +29,24 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-    />
+        app:layout_constraintVertical_bias="0.617" />
+
+    <Button
+        android:id="@+id/ChangeToActList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+
+        android:backgroundTintMode="screen"
+        android:contentDescription="Cámbia a una activity que muestra la lista de Activityes de la aplicación"
+        android:text="View All Apps"
+        android:textColor="#A8A8A8"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
