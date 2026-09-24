@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productos>
+  <Portattil id="HP1" precio="10000">
+    Portatil alta gama con capacidad de procesamiento para arruinar tu economía
+    <Incluye>
+      <Cargador />
+      <Lapiz_Táctil />
+      <Ratón_Ultimate_Edition />
+    </Incluye>
+  </Portattil>
+  <Reloj />
+  <Tablet />
+  <SmartWacht />
+</productos>
