@@ -10,7 +10,7 @@ public class departamento {
     public static File fichero = new File("AleatorioDepart.dat");
     public static RandomAccessFile ficheroR;
     //los strings ocupan 17 porque usamos readUTF y writeUTF
-    public static int bytesRegistro=(2*2)+((2*17));
+    public static int bytesRegistro=(2*2)+((2*15)*2);
 
 
     public Short numDepartamento, numEmpleados;
@@ -59,8 +59,8 @@ public class departamento {
                 println("Registro num " + bytePositionToNumRegistro());
                 println("Cod departamento " + ficheroR.readShort());
                 println("Numero empleados " + ficheroR.readShort());
-                println("Nombre de departamento " + ficheroR.readUTF());
-                println("Ubicación " + ficheroR.readUTF());
+                println("Nombre de departamento " + leerChars((int)ficheroR.getFilePointer(),15));
+                println("Ubicación " + leerChars((int)ficheroR.getFilePointer(),15));
                 println();
                 println();
                 println();
@@ -80,14 +80,27 @@ public class departamento {
                 println("Registro num " + bytePositionToNumRegistro());
                 println("Cod departamento " + ficheroR.readShort());
                 println("Numero empleados " + ficheroR.readShort());
-                println("Nombre de departamento " + ficheroR.readUTF());
-                println("Ubicación " + ficheroR.readUTF());
+                println("Nombre de departamento " + leerChars((int)ficheroR.getFilePointer(),15));
+                println("Ubicación " + leerChars((int)ficheroR.getFilePointer(),15));
                 println();
                 println();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static String leerChars(int puntero, int cantidad){
+        String response="";
+        try {
+            ficheroR.seek(puntero);
+            for(int i =0; i<cantidad;i++){
+                response+=ficheroR.readChar();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return response.substring(0,15).trim();
     }
 
     public static Boolean exist(short numDepartamento){
@@ -110,8 +123,8 @@ public class departamento {
                 ficheroR.seek(fichero.length());
                 ficheroR.writeShort(numDepartamento);
                 ficheroR.writeShort(numEmpleados);
-                ficheroR.writeUTF(nombre.substring(0, 15));
-                ficheroR.writeUTF(localidad.substring(0, 15));
+                ficheroR.writeChars(nombre.substring(0, 15));
+                ficheroR.writeChars(localidad.substring(0, 15));
                 return true;
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -131,8 +144,8 @@ public class departamento {
             ficheroR.seek(num);
             ficheroR.writeShort(-1);
             ficheroR.writeShort(-1);
-            ficheroR.writeUTF("***************".substring(0,15));
-            ficheroR.writeUTF("***************".substring(0,15));
+            ficheroR.writeChars("***************".substring(0,15));
+            ficheroR.writeChars("***************".substring(0,15));
             println();
             return;
         } catch (IOException e) {
@@ -174,8 +187,8 @@ public class departamento {
             ficheroR.seek(num);
             ficheroR.writeShort(numDepartamento);
             ficheroR.writeShort(numEmpleados);
-            ficheroR.writeUTF(nombre.substring(0,15));
-            ficheroR.writeUTF(localidad.substring(0,15));
+            ficheroR.writeChars(nombre.substring(0,15));
+            ficheroR.writeChars(localidad.substring(0,15));
             println();
             imprimirDepartamenFromByte(num);
             return;
@@ -204,7 +217,6 @@ public class departamento {
             throw new RuntimeException(e);
         }
     }
-
 
 
     private static int numRegistroToBytes(int numRegistro){
