@@ -49,6 +49,7 @@ class MainActivity : Activity() {
     }
 
     fun changeActivityToList(){
+        val s = "ListadoActividades"
         val intent = Intent(this, ListadoActividades::class.java)
         startActivity(intent)
     }
